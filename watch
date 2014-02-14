@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+env/bin/watchmedo shell-command --command 'env/bin/python mtth.py build' source/ templates/
