@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{% block page_title %}{% endblock %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href='http://fonts.googleapis.com/css?family=Changa+One' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.4.2/pure-min.css">
+
+    <style type="text/css">
+
+    html {
+        border-top: 10px solid #565d64;
+    }
+
+    div.content {
+        max-width: 500px;
+        margin: 0 auto;
+        border: 1px solid gray;
+        padding: 10px;
+    }
+
+    a.brand {
+        font-family: 'Changa One', cursive;
+        font-size: 7em;
+        padding: 0;
+        margin: 0;
+        text-decoration: none;
+        letter-spacing: -7px;
+    }
+
+    .pure-menu a.pure-menu-heading {
+        font-family: 'Changa One', cursive;
+        text-transform: none;
+        font-size: 3em;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+        font-family: 'Changa One', cursive;
+        font-variant: small-caps;
+        color: #565d64;
+    }
+
+    img {
+        width: 100%;
+    }
+
+    .pure-menu {
+        text-align: center;
+    }
+
+    </style>
+</head>
+<body>
+   <div class="pure-menu pure-menu-open pure-menu-horizontal">
+    <a href="/" class="pure-menu-heading">mtth</a>
+
+    <ul>
+        <li><a href="/about/">about</a></li>
+        <li><a href="/elsewhere/">elsewhere</a></li>
+        <li><a href="/contact/">contact</a></li>
+    </ul>
+</div>
+    <div class="content">
+ 
+        <div class="pure-g-r">
+            <div class="pure-u-1">
+            {% block body %}{% endblock %}
+            </div>
+        </div>
+    </div>
+</body>
+</html>
