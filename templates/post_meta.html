@@ -1,3 +1,5 @@
+{% if not post.meta["exclude_from_list"] %}
 <div class="post-meta">
     <a href="{{ post.url() }}">{{ post.timestamp().strftime('%Y-%m-%d') }} &#x25cf;</a>
 </div>
+{% endif %}

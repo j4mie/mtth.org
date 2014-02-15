@@ -7,17 +7,26 @@
 {% block body %}
 {% for post in posts %}
 <div class="post">
-    {{ post.rendered_body() }}
+    {{ post.rendered_excerpt() }}
+    {% if post.has_excerpt %}
+    <p class="read-more"><a href="{{ post.url() }}">(continued)</a></p>
+    {% endif %}
     {% include "post_meta.html" %}
 </div>
 {% endfor %}
 
-{% if previous_url %}
-<p><a href="{{ previous_url }}">Previous page</a></p>
-{% endif %}
+<div class="paginator pure-g">
+    <div class="pure-u-1-2 prev">
+        {% if previous_url %}
+        <a href="{{ previous_url }}">&#8592; Previous page</a>
+        {% endif %}
+    </div>
 
-{% if next_url %}
-<p><a href="{{ next_url }}">Next page</a></p>
-{% endif %}
+    <div class="pure-u-1-2 next">
+    {% if next_url %}
+    <a href="{{ next_url }}">Next page &#8594;</a>
+    {% endif %}
+    </div>
+</div>
 
 {% endblock %}

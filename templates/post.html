@@ -6,7 +6,16 @@
 
 {% block body %}
 <div class="post">
+    {% if post.has_excerpt %}
+    <div class="excerpt">
+        {{ post.rendered_excerpt() }}
+    </div>
+    {% endif %}
+
+    <div class="body">
     {{ post.rendered_body() }}
+    </div>
+
     {% include "post_meta.html" %}
 </div>
 {% endblock %}
