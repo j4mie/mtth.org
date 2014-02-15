@@ -56,6 +56,9 @@ class Post(object):
     def timestamp(self):
         return iso8601.parse_date(self.meta['timestamp'])
 
+    def body_classes(self):
+        return self.meta.get('body_classes')
+
     def rendered_excerpt(self):
         return markdown.markdown(self.excerpt.strip())
 

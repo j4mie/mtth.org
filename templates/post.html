@@ -12,7 +12,7 @@
     </div>
     {% endif %}
 
-    <div class="body">
+    <div class="body{% if post.body_classes() %} {{ post.body_classes() }}{% endif %}">
     {{ post.rendered_body() }}
     </div>
 
