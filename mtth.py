@@ -20,8 +20,8 @@ TEMPLATES_DIR = 'templates'
 
 
 IMAGE_SIZE = "600x600"
-POSTS_PER_PAGE = 5
-
+POSTS_PER_PAGE = 3
+SECTION_SEPARATOR = '---\n'
 
 jinja2_env = Environment(loader=FileSystemLoader(TEMPLATES_DIR))
 
@@ -31,7 +31,22 @@ class Post(object):
     def __init__(self, filename):
         self.filename = filename
         contents = open(self.filename).read()
-        header, self.body = contents.split('---\n\n')
+        chunks = contents.split(SECTION_SEPARATOR)
+
+        if len(chunks) == 2:
+            header, body = chunks
+            self.meta = self.read_header(header)
+            self.excerpt = body
+            self.body = body
+            self.has_excerpt = False
+
+        if len(chunks) == 3:
+            header, excerpt, body = chunks
+            self.meta = self.read_header(header)
+            self.excerpt = excerpt
+            self.body = body
+            self.has_excerpt = True
+
         self.meta = self.read_header(header)
 
     def read_header(self, header_text):
@@ -40,6 +55,9 @@ class Post(object):
 
     def timestamp(self):
         return iso8601.parse_date(self.meta['timestamp'])
+
+    def rendered_excerpt(self):
+        return markdown.markdown(self.excerpt.strip())
 
     def rendered_body(self):
         return markdown.markdown(self.body.strip())
@@ -131,7 +149,6 @@ def new(content=None):
 
 def build():
     _clean()
-    print 'Created directory "%s"' % OUTPUT_DIR
     filenames = _listdir()
 
     posts = []
@@ -151,7 +168,7 @@ def build():
     for item in other:
         item.copy()
 
-    _write_indexes([post for post in posts if not post.meta.get('exclude_from_index')])
+    _write_indexes([post for post in posts if not post.meta.get('exclude_from_list')])
 
 
 def import_image():
