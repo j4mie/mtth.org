@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <title>mtth</title>
+    <id>http://www.mtth.org/feed.atom</id>
+    <updated>{{ posts[0].timestamp().isoformat() }}</updated>
+    <link href="http://www.mtth.org" />
+    <link href="http://www.mtth.org/feed.atom" rel="self" />
+
+    {% for post in posts %}
+    <entry>
+        <title>{{ post.title() }}</title>
+        <id>http://www.mtth.org{{ post.url() }}</id>
+        <author><name>Jamie Matthews</name></author>
+        <updated>{{ post.timestamp().isoformat() }}</updated>
+        <link href="http://www.mtth.org{{ post.url() }}"/>
+        <content type="html">{{ post.rendered_body()|e }}</content>
+    </entry>
+    {% endfor %}
+</feed>

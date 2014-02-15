@@ -138,6 +138,15 @@ def _write_indexes(posts):
     print 'Copied "%s" to "%s"' % (first_index_filename, root_index_filename)
 
 
+def _write_feed(posts):
+    output_filename = "%s/feed.atom" % OUTPUT_DIR
+    template = jinja2_env.get_template('feed.atom')
+    with open(output_filename, 'w') as output_file:
+        output = template.render(posts=posts)
+        output_file.write(output)
+    print 'Created file "%s"' % output_filename
+
+
 def new(content=None):
     filename = "%s.md" % uuid.uuid4().hex[:6]
     timestamp = datetime.utcnow().isoformat()
@@ -168,7 +177,9 @@ def build():
     for item in other:
         item.copy()
 
-    _write_indexes([post for post in posts if not post.meta.get('exclude_from_list')])
+    posts_excluding_pages = [post for post in posts if not post.meta.get('exclude_from_list')]
+    _write_indexes(posts_excluding_pages)
+    _write_feed(posts_excluding_pages)
 
 
 def import_image():
