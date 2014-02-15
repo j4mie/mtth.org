@@ -99,6 +99,10 @@
         font-weight: bold;
     }
 
+    .post .body.center {
+        text-align: center;
+    }
+
     .pure-menu {
         text-align: center;
     }
@@ -115,13 +119,23 @@
     }
 
     .paginator {
-        border-top: 5px solid #ddd;
         margin-top: 30px;
         padding: 10px 0;
     }
 
     .paginator .next {
         text-align: right;
+    }
+
+    .footer {
+        border-top: 5px solid #ddd;
+        padding: 10px 0;
+    }
+
+    .footer, .footer a {
+        text-align: center;
+        font-weight: normal;
+        font-size: 90%;
     }
 
     </style>
@@ -132,15 +146,18 @@
 
     <ul>
         <li><a href="/about/">about</a></li>
-        <li><a href="/feed.atom">feed</a></li>
+        <li><a href="/elsewhere/">elsewhere</a></li>
     </ul>
 </div>
     <div class="content">
- 
         <div class="pure-g-r">
             <div class="pure-u-1">
             {% block body %}{% endblock %}
             </div>
+        </div>
+
+        <div class="footer">
+            <a href="https://creativecommons.org/licenses/by-nc/3.0/">cc licensed</a> &#x25cf; <a href="https://github.com/j4mie/mtth.org">source</a> &#x25cf; <a href="/feed.atom">feed</a>
         </div>
     </div>
 </body>
