@@ -20,7 +20,7 @@ TEMPLATES_DIR = 'templates'
 
 
 IMAGE_SIZE = "600x600"
-POSTS_PER_PAGE = 3
+POSTS_PER_PAGE = 5
 SECTION_SEPARATOR = '---\n'
 
 jinja2_env = Environment(loader=FileSystemLoader(TEMPLATES_DIR))
