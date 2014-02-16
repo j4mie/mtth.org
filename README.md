@@ -5,7 +5,7 @@
 ### Installation
 
     virtualenv env
-    env/bin/pip install - requirements.txt
+    env/bin/pip install -r requirements.txt
 
 ### mtth.py commands
 
@@ -15,5 +15,6 @@
 
 ### other commands
 
-    ./watch
-    ./serve
+    bin/watch
+    bin/serve
+    bin/deploy
