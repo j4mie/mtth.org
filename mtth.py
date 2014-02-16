@@ -19,7 +19,7 @@ OUTPUT_DIR = 'output'
 TEMPLATES_DIR = 'templates'
 
 
-IMAGE_SIZE = "600x600"
+IMAGE_SIZE = "1000x1000"
 POSTS_PER_PAGE = 5
 SECTION_SEPARATOR = '---\n'
 
@@ -185,31 +185,29 @@ def build():
     _write_feed(posts_excluding_pages)
 
 
-def import_image():
+def import_images():
     """Brittle, but whatever"""
-    name_or_url = sys.argv[2]
-    extension = name_or_url.rsplit('.', 1)[-1]
-    slug = uuid.uuid4().hex[:6]
-    target_filename = "%s.%s" % (slug, extension)
-    target_path = "%s/%s.%s" % (INPUT_DIR, slug, extension)
 
-    if name_or_url.startswith('http'):
-        subprocess.call("curl %s > %s" % (name_or_url, target_path), shell=True)
-    else:
-        shutil.copyfile(name_or_url, target_path)
+    for name_or_url in sys.argv[2:]:
+        extension = name_or_url.rsplit('.', 1)[-1]
+        slug = uuid.uuid4().hex[:6]
+        target_filename = "%s.%s" % (slug, extension)
+        target_path = "%s/%s.%s" % (INPUT_DIR, slug, extension)
 
-    print 'Created file "%s"' % target_path
+        if name_or_url.startswith('http'):
+            subprocess.call("curl %s > %s" % (name_or_url, target_path), shell=True)
+        else:
+            shutil.copyfile(name_or_url, target_path)
 
-    subprocess.call("convert %s -resize %s %s" % (target_path, IMAGE_SIZE, target_path), shell=True)
-    print "Resized to fit %s" % IMAGE_SIZE
+        subprocess.call("convert %s -resize %s %s" % (target_path, IMAGE_SIZE, target_path), shell=True)
 
-    new(content="![%s](/%s)" % (slug, target_filename))
+        print "![%s](/%s)" % (slug, target_filename)
 
 
 COMMANDS = {
     'new': new,
     'build': build,
-    'import': import_image,
+    'import': import_images,
 }
 
 
