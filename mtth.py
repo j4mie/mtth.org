@@ -8,6 +8,7 @@ import glob
 import iso8601
 import markdown
 import os
+import re
 import shutil
 import subprocess
 import sys
@@ -22,6 +23,8 @@ TEMPLATES_DIR = 'templates'
 IMAGE_SIZE = "1000x1000"
 POSTS_PER_PAGE = 5
 SECTION_SEPARATOR = '---\n'
+
+H1_RE = re.compile("<h1>(.*)</h1>")
 
 jinja2_env = Environment(loader=FileSystemLoader(TEMPLATES_DIR))
 
@@ -48,6 +51,8 @@ class Post(object):
             self.has_excerpt = True
 
         self.meta = self.read_header(header)
+        self._rendered_excerpt = None
+        self._rendered_body = None
 
     def read_header(self, header_text):
         pairs = [line.split(": ", 1) for line in header_text.split('\n') if line]
@@ -60,16 +65,37 @@ class Post(object):
         return self.meta.get('body_classes')
 
     def rendered_excerpt(self):
-        return markdown.markdown(self.excerpt.strip())
+        if not self._rendered_excerpt:
+            self._rendered_excerpt = markdown.markdown(self.excerpt.strip())
+        return self._rendered_excerpt
 
     def rendered_body(self):
-        return markdown.markdown(self.body.strip())
+        if not self._rendered_body:
+            self._rendered_body = markdown.markdown(self.body.strip())
+        return self._rendered_body
 
     def slug(self):
         return self.filename.replace('%s/' % INPUT_DIR, '').replace('.md', '')
 
     def title(self):
-        return self.meta.get('title', self.slug())
+        title = self.meta.get('title')
+        if title:
+            return title
+
+        title = self.find_title_in_html(self.rendered_excerpt())
+        if title:
+            return title
+
+        title = self.find_title_in_html(self.rendered_body())
+        if title:
+            return title
+
+        return self.slug()
+
+    def find_title_in_html(self, html):
+        match = H1_RE.search(html)
+        if match:
+            return match.groups()[0]
 
     def url(self):
         return '/%s/' % self.slug()
