@@ -223,6 +223,7 @@ def import_images():
         if name_or_url.startswith('http'):
             subprocess.call("curl %s > %s" % (name_or_url, target_path), shell=True)
         else:
+            name_or_url = os.path.expanduser(name_or_url)
             shutil.copyfile(name_or_url, target_path)
 
         subprocess.call("convert %s -resize %s %s" % (target_path, IMAGE_SIZE, target_path), shell=True)
