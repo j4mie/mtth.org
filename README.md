@@ -1,8 +1,8 @@
 # [mtth.org](http://www.mtth.org/)
 
-## source code and static site generator.
+source code and static site generator.
 
-### Installation
+### installation
 
     virtualenv env
     env/bin/pip install -r requirements.txt
@@ -18,3 +18,8 @@
     bin/watch
     bin/serve
     bin/deploy
+
+### license
+
+code: [unlicense](http://unlicense.org/)
+content: [cc](https://creativecommons.org/licenses/by-nc/3.0/)
