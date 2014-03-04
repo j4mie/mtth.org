@@ -102,6 +102,7 @@ img {
 .post-meta {
     font-size: 80%;
     text-align: right;
+    float: right;
 }
 
 .post-meta a {
