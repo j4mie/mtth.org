@@ -7,11 +7,11 @@
 {% block body %}
 {% for post in posts %}
 <div class="post list">
-    {% include "post_meta.html" %}
     {{ post.rendered_excerpt() }}
     {% if post.has_excerpt %}
     <p class="read-more"><a href="{{ post.url() }}">(continued)</a></p>
     {% endif %}
+    {% include "post_meta.html" %}
 </div>
 {% endfor %}
 
