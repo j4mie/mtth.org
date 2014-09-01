@@ -2,10 +2,20 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <title>mtth</title>
     <id>http://www.mtth.org/feed.atom</id>
-    <updated>2014-08-18T14:34:19.826706+00:00</updated>
+    <updated>2014-09-01T07:59:16.481439+00:00</updated>
     <link href="http://www.mtth.org" />
     <link href="http://www.mtth.org/feed.atom" rel="self" />
 
+    
+    <entry>
+        <title>Brighton, September 2014</title>
+        <id>http://www.mtth.org/7c48c9/</id>
+        <author><name>Jamie Matthews</name></author>
+        <updated>2014-09-01T07:59:16.481439+00:00</updated>
+        <link href="http://www.mtth.org/7c48c9/"/>
+        <content type="html">&lt;p&gt;&lt;img alt=&#34;93954f&#34; src=&#34;/93954f.jpg&#34; /&gt;&lt;/p&gt;
+&lt;h1&gt;Brighton, September 2014&lt;/h1&gt;</content>
+    </entry>
     
     <entry>
         <title>Brighton, August 2014</title>
