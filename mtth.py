@@ -24,14 +24,14 @@ IMAGE_SIZE = "1000x1000"
 POSTS_PER_PAGE = 5
 SECTION_SEPARATOR = '---\n'
 
-H1_RE = re.compile("<h1>(.*)</h1>")
+MAX_HEADING_LEVEL = 2
+HEADING_RE = re.compile("<h%s.*>(.*)</h%s>" % (MAX_HEADING_LEVEL, MAX_HEADING_LEVEL))
 
 jinja2_env = Environment(loader=FileSystemLoader(TEMPLATES_DIR))
 
 
 def markdown_to_html(md):
-    # Set max header level to 2
-    return markdown.markdown(md, extensions=['headerid(level=2)'])
+    return markdown.markdown(md, extensions=['headerid(level=%s)' % MAX_HEADING_LEVEL])
 
 
 class Post(object):
@@ -98,7 +98,7 @@ class Post(object):
         return self.slug()
 
     def find_title_in_html(self, html):
-        match = H1_RE.search(html)
+        match = HEADING_RE.search(html)
         if match:
             return match.groups()[0]
 
