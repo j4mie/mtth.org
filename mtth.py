@@ -29,6 +29,11 @@ H1_RE = re.compile("<h1>(.*)</h1>")
 jinja2_env = Environment(loader=FileSystemLoader(TEMPLATES_DIR))
 
 
+def markdown_to_html(md):
+    # Set max header level to 2
+    return markdown.markdown(md, extensions=['headerid(level=2)'])
+
+
 class Post(object):
 
     def __init__(self, filename):
@@ -66,12 +71,12 @@ class Post(object):
 
     def rendered_excerpt(self):
         if not self._rendered_excerpt:
-            self._rendered_excerpt = markdown.markdown(self.excerpt.strip())
+            self._rendered_excerpt = markdown_to_html(self.excerpt.strip())
         return self._rendered_excerpt
 
     def rendered_body(self):
         if not self._rendered_body:
-            self._rendered_body = markdown.markdown(self.body.strip())
+            self._rendered_body = markdown_to_html(self.body.strip())
         return self._rendered_body
 
     def slug(self):
