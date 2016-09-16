@@ -1,6 +1,6 @@
 html {
-    border-top: 10px solid #565d64;
-    color: #565d64;
+    border-top: 1px solid #000;
+    color: #000;
 }
 
 html, button, input, select, textarea,
@@ -12,7 +12,7 @@ html, button, input, select, textarea,
 a {
     font-weight: bold;
     text-decoration: none;
-    color: #565d64;
+    color: #000;
 }
 
 h1 {
@@ -37,10 +37,10 @@ h5 {
 
 blockquote {
     font-family: "Georgia", serif;
-    color: #666;
+    color: #000;
     font-style: italic;
     line-height: 1.8;
-    border-left: 5px solid #ddd;
+    border-left: 5px solid #000;
     padding-left: 1em;
     margin: 0;
 }
@@ -103,6 +103,14 @@ img {
     text-align: center;
 }
 
+.pure-menu .pure-menu-heading {
+    color: #000;
+}
+
+.pure-menu a {
+    color: #000;
+}
+
 .post-meta {
     font-size: 80%;
 }
@@ -110,7 +118,7 @@ img {
 .post-meta a {
     text-decoration: none;
     font-weight: bold;
-    color: #565d64;
+    color: #000;
 }
 
 .paginator {
@@ -123,7 +131,7 @@ img {
 }
 
 .footer {
-    border-top: 5px solid #ddd;
+    border-top: 1px solid #000;
     padding: 10px 0;
 }
 
