@@ -3,9 +3,10 @@ exclude_from_list: true
 body_classes: center
 ---
 
-[Twitter](https://twitter.com/j4mie)
-& [GitHub](https://github.com/j4mie)
-& [Instagram](http://instagram.com/recurse)
-& [Flickr](http://flickr.com/j4mie)
-& [500px](http://500px.com/recurse)
-& [email](mailto:jamie@mtth.org).
+[instagram](http://instagram.com/recurse)
+
+[twitter](https://twitter.com/j4mie)
+
+[github](https://github.com/j4mie)
+
+[email](mailto:jamie@mtth.org)
